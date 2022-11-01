@@ -51,7 +51,7 @@ function Modal({setShowModal, setMyPokemon}: IModal) {
         </div>
         <div className="modal-body">
           <form className="flex flex-col items-center gap-4" onSubmit={handleSubmit}>
-            <div className="relative group border-[3px] border-black flex justify-center items-center cursor-pointer object-cover overflow-clip hover:bg-black rounded-[0px] hover:rounded-[100px]" style={{height: 64, width: 64}}>
+            <div className="relative group border-[3px] border-black flex justify-center items-center cursor-pointer overflow-hidden hover:bg-black rounded-[0px] hover:rounded-[100px]" style={{height: 64, width: 64}}>
               <input id="image" className="absolute w-full h-full opacity-0 cursor-pointer" type="file" accept="image/*" onChange={(e) => handleUpload(e.target.files[0])}/>
               {image ? <img src={image} alt={"Your Pokemon"}/> : <Plus className='cursor-pointer group-hover:stroke-white'/>}
             </div>
