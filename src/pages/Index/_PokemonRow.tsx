@@ -12,7 +12,7 @@ interface IPokemonRow {
 function PokemonRow({pokemon, index, custom = false, onClick, selectedPokemon}: IPokemonRow) {
   const matches = (pokemon.name === selectedPokemon?.name && pokemon.id === selectedPokemon?.id)
   return (
-    <tr id={pokemon.id.toString()} className={`p-2 bg-white ${matches ? "bg-black text-white" : ""} ${onClick ? "cursor-pointer" : ""}`} onClick={() => onClick(pokemon)}>
+    <tr id={pokemon.id.toString()} className={`p-2 bg-white hover:bg-slate-100 ${matches ? "bg-black text-white" : ""} ${onClick ? "cursor-pointer" : ""}`} onClick={() => onClick(pokemon)}>
       <td className="pokemon-item" style={{width: 64}}>
         <img className='object-cover' src={pokemon.sprites.front_default} alt={pokemon.name} style={{height: 64, width: 64}}/>
       </td>
