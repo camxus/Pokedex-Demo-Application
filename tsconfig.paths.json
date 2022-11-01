@@ -13,8 +13,8 @@
       "@hooks/*": ["./src/utility/hooks/*"],
       "@utils": ["./src/utility/Utils"],
       "@pages/*": ["./src/pages/*"],
-      "@drdoctor/*": ["./src/drdoctor/components/*"],
-      "@api/*": ["./src/drdoctor/api/*"],
+      "@pokedex/*": ["./src/pokedex/components/*"],
+      "@api/*": ["./src/pokedex/api/*"],
       "@css/*": ["./src/assets/css/*"]
     }
   }

@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  transition: all 0.2s ease-in-out
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -16,7 +20,6 @@ code {
     monospace;
 }
 
-#root,body, html {
-  width: 100%;
-  height: 100%;
+.infinite-scroll-component__outerdiv {
+  display: contents;
 }

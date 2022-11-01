@@ -2,6 +2,9 @@ const path = require('path')
 
 module.exports = {
   reactScriptsVersion: 'react-scripts',
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+  },
   style: {
     sass: {
       loaderOptions: {
@@ -25,8 +28,8 @@ module.exports = {
       '@configs': path.resolve(__dirname, 'src/configs'),
       '@utils': path.resolve(__dirname, 'src/utility/Utils'),
       '@hooks': path.resolve(__dirname, 'src/utility/hooks'),
-      '@api': path.resolve(__dirname, 'src/drdoctor/api'),
-      '@drdoctor': path.resolve(__dirname, 'src/drdoctor/components'),
+      '@api': path.resolve(__dirname, 'src/pokedex/api'),
+      '@pokedex': path.resolve(__dirname, 'src/pokedex/components'),
       '@css': path.resolve(__dirname, 'src/assets/css'),
       '@pages': path.resolve(__dirname, 'src/pages')
     }
