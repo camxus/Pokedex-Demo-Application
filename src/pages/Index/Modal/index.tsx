@@ -33,7 +33,7 @@ function Modal({setShowModal, setMyPokemon}: IModal) {
         {
           id: myPokemon.length + 1,
           sprites: {front_default: image},
-          name: e.target.name.value
+          name: e.target.name.value ?? "N/A"
         }
       ]
       localStorage.setItem("myPokemon", JSON.stringify(_myPokemon))

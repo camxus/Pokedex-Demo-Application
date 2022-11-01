@@ -18,7 +18,7 @@ function PokeInfo({show, setShow, pokemon, setPokemon}: IPokeInfo) {
   return (
         <>
           <div className={`background bg-black ${!show ? "opacity-[0] pointer-events-none" : "opacity-[0.5]"} w-screen h-screen fixed top-0 left-0`} style={{zIndex: 9999}} onClick={() => handleClose()}/>
-          <div className={`w-full md:w-1/4 h-3/4 md:h-full fixed top-0 right-0 shadow-lg bg-white flex flex-col justify-center items-center p-2 ${!show ? "translate-x-full" : "translate-x-0"}`} style={{ zIndex: 10000 }}>
+          <div className={`sidebar-container w-full md:w-1/4 h-3/4 md:h-full fixed md:top-0 bottom-0 right-0 shadow-lg bg-white flex flex-col justify-center items-center p-2 ${show ? "show" : ""}`} style={{ zIndex: 10000 }}>
           {pokemon && 
             <>
               <h2 className="PokeInfo-header font-bold text-left w-full p-3 border-0 border-b mb-4">

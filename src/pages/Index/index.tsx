@@ -124,7 +124,10 @@ const Index = () => {
                     }
                   </table>
                 :
+                <>
                   <p className="my-4 text-slate-400">You have not added any custom Pokémon</p>
+                  <ButtonStyled className="relative py-1 px-4 w-full hover:rounded-[0px]" type="submit" onClick={() => setShowModal(true)}>Add Pokémon</ButtonStyled>
+                </>
               }
               <hr className="w-full border-0 border-b"/>
               <h3 className="font-bold my-4">All Pokémon</h3>
