@@ -3,7 +3,6 @@ import React, { useEffect, useReducer, useState } from 'react'
 import { useAsyncError, useNavigate } from "react-router-dom"
 import { Plus } from "react-feather"
 import * as yup from 'yup'
-// import Logo from "@assets/images/pokedex-logo.png"
 import { getAllPokemon, getPokemon } from '@src/pokedex/api/pokemon'
 import Navbar from './_Navbar'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -11,11 +10,12 @@ import { ButtonStyled } from '@src/assets/css/Button'
 import Modal from './Modal'
 import PokemonRow from './_PokemonRow'
 import PokeInfo from './_PokeInfo'
-// import OTP from './OTP/index.tsx'
 
 export interface PokemonProps {
   id: number
   name: string
+  height: number
+  weight: number
   sprites: {
     front_default: string
   }
@@ -26,6 +26,12 @@ export interface PokemonProps {
   }[]
   moves?: {
     move: {
+      name: string
+    }
+  }[]
+  stats?: {
+    base_stat: number
+    stat: { 
       name: string
     }
   }[]
@@ -59,24 +65,41 @@ const Index = () => {
   })
 
   // appends fetched Pokemon pokemon array
-  const appendPokemon = async (results) => {
-    await Promise.all(results.map(async p => {
+  const orderedFetch = async (results) => {
+    return await Promise.all(results.map(async p => {
       const pokemon = await getPokemon({url: p.url})
       if (!pokemonReducerState.pokemon.find(pokemon => pokemon.name === p.name)) {
-        setPokemonReducerState(pokemonReducerState => ({...pokemonReducerState, pokemon: [...pokemonReducerState.pokemon, pokemon]}))
+        return pokemon
       }
       return
     }))
-    return
+  }
+  
+  const appendPokemon = (pokemon, pokemonReducerState) => {
+    if (pokemon) return {
+      ...pokemonReducerState,
+      pokemon: [...pokemonReducerState.pokemon, pokemon]
+    }
   }
 
   // fetches pokemon uses offset and limit queries
   const fetchPokemon = async () => {
     if (pokemonReducerState.loading) return
     setPokemonReducerState(pokemonReducerState => ({...pokemonReducerState, loading: true}))
+
     const {results, next} = await getAllPokemon({offset: pokemonReducerState.offset})
-    await appendPokemon(results)
-    setPokemonReducerState(pokemonReducerState => ({...pokemonReducerState, offset: pokemonReducerState.pokemon.length, loading: false, next}))
+    const pokemon = await orderedFetch(results)
+
+    pokemon.forEach(p => {
+      setPokemonReducerState(pokemonReducerState => appendPokemon(p, pokemonReducerState))
+    })
+    
+    setPokemonReducerState(pokemonReducerState => ({
+      ...pokemonReducerState,
+      offset: pokemonReducerState.pokemon.length,
+      loading: false,
+      next
+    }))
   }
 
   const handleSelectPokemon = (pokemon) => {

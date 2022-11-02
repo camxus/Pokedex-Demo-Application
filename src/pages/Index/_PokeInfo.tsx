@@ -33,7 +33,7 @@ function PokeInfo({show, setShow, pokemon, setPokemon}: IPokeInfo) {
                   <tbody className="align-baseline">
                     <tr>
                       <th className="w-1/4">Types</th>
-                      <td>
+                      <td className="py-4">
                         {
                           pokemon?.types ? 
                           <ul>
@@ -45,8 +45,47 @@ function PokeInfo({show, setShow, pokemon, setPokemon}: IPokeInfo) {
                       </td>
                     </tr>
                     <tr>
+                      <th className="w-1/4">Height</th>
+                      <td className="py-4">
+                        {
+                          pokemon?.height ? <p>{pokemon?.height}</p>
+                          :
+                          <p className="my-4 text-slate-400">No height assigned</p>
+                        }
+                      </td>
+                    </tr>
+                    <tr>
+                      <th className="w-1/4">Weight</th>
+                      <td className="py-4">
+                        {
+                          pokemon?.weight ? <p>{pokemon?.weight}</p>
+                          :
+                          <p className="my-4 text-slate-400">No weight assigned</p>
+                        }
+                      </td>
+                    </tr>
+                    <tr>
+                      <th className="w-1/4">Stats</th>
+                      <td className="py-4">
+                        {
+                          pokemon?.stats ? 
+                          <table>
+                            <tbody>
+                              {pokemon?.stats?.map((s, index) => <tr key={index} >
+                                  <th className="text-left">{s.stat.name}</th>
+                                  <td className="w-full pl-4"><div className={`bg-slate-500 h-[3px] rounded px-2`} style={{width: `${s.base_stat}%`}}/></td>
+                                </tr>
+                              )}
+                            </tbody>
+                          </table>
+                          :
+                          <p className="my-4 text-slate-400">No stats assigned</p>
+                        }
+                      </td>
+                    </tr>
+                    <tr>
                       <th className="w-1/4">Moves</th>
-                      <td>
+                      <td className="py-4">
                         {
                           pokemon?.moves ? 
                           <ul>

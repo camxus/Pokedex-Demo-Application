@@ -33,7 +33,9 @@ function Modal({setShowModal, setMyPokemon}: IModal) {
         {
           id: myPokemon.length + 1,
           sprites: {front_default: image},
-          name: e.target.name.value !== "" ? e.target.name.value : "N/A"
+          name: e.target.name.value !== "" ? e.target.name.value : "N/A",
+          height: e.target.height.value ?? 0,
+          weight: e.target.weight.value?? 0
         }
       ]
       localStorage.setItem("myPokemon", JSON.stringify(_myPokemon))
@@ -51,11 +53,13 @@ function Modal({setShowModal, setMyPokemon}: IModal) {
         </div>
         <div className="modal-body">
           <form className="flex flex-col items-center gap-4" onSubmit={handleSubmit}>
-            <div className="relative group border-[3px] border-black flex justify-center items-center cursor-pointer overflow-hidden hover:bg-black rounded-[0px] hover:rounded-[100px]" style={{height: 64, width: 64}}>
+            <div className={`relative group border-[3px] border-black flex justify-center items-center cursor-pointer overflow-hidden hover:bg-black ${!image ? "rounded-[0px] hover:rounded-[100px]" : "rounded-[100px] hover:rounded-[0px]"} `} style={{height: 64, width: 64}}>
               <input id="image" className="absolute w-full h-full opacity-0 cursor-pointer" type="file" accept="image/*" onChange={(e) => handleUpload(e.target.files[0])}/>
               {image ? <img src={image} alt={"Your Pokemon"}/> : <Plus className='cursor-pointer group-hover:stroke-white'/>}
             </div>
             <input id="name" type="text" className="m-1 p-4 border-0 border-b focus:rounded-none focus:outline-transparent focus:border-black" placeholder="Name"/>
+            <input id="height" type="number" className="m-1 p-4 border-0 border-b focus:rounded-none focus:outline-transparent focus:border-black" placeholder="Height"/>
+            <input id="weight" type="number" className="m-1 p-4 border-0 border-b focus:rounded-none focus:outline-transparent focus:border-black" placeholder="Weight"/>
             <ButtonStyled className="relative py-1 px-4 ml-auto" type="submit">Add</ButtonStyled>
           </form>
         </div>
